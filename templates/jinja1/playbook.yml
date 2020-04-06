@@ -1,0 +1,12 @@
+---
+- hosts: all
+  remote_user: root
+  tasks:
+    - name: to create a template 
+      template:
+        src: my_app.conf.j2
+        dest: /root/my_app.conf
+    - name: to copy info file to control node
+      fetch:
+        src: /root/my_app.conf
+        dest: /tmp/

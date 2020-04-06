@@ -1,0 +1,5 @@
+This system is {{ ansible_facts['fqdn'] }}
+The version of the system is {{ ansible_facts['distribution'] }}
+The system user id is {{ ansible_facts['user_id'] }}
+The systems ipv4 address is {{ ansible_facts['default_ipv4']['address'] }}
+The system hostname is {{ ansible_facts['hostname'] }}

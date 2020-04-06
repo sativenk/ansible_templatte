@@ -1,0 +1,31 @@
+---
+- hosts: all
+  remote_user: root
+  tasks:
+    - name: to create a file and set the permissions
+      file:
+        path: /home/student/file1
+        mode: 0600
+        state: touch
+    - name: to assign the context
+      sefcontext:
+        target: /home/student/file1
+        setype: samba_share_t
+        state: present
+    - name: to load the contents to the file
+      blockinfile:
+        path: /home/student/file1
+        block: |
+          contents are loaded to file in managed host
+        state: present
+    - name: to get the file from managed host to control node
+      fetch:
+        src: /home/student/file1
+        dest: /tmp/
+        flat: yes
+    - name: to remove the file in managed host permanently
+      file:
+        dest: /home/student/file1
+        state: absent
+
+

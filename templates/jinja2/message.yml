@@ -1,0 +1,11 @@
+---
+- hosts: all
+  remote_user: root
+  tasks:
+    - name: to configure message of the day
+      template:
+        src: /home/student/PLAYBOOKS1/template/message.j2
+        dest: /etc/motd
+        owner: root
+        group: root
+        mode: 0644
